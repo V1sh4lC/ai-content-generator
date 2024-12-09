@@ -15,7 +15,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const outFit = Outfit({ subsets: ["latin"]})
+const outFit = Outfit()
 
 export const metadata: Metadata = {
   title: "Create Next App",
