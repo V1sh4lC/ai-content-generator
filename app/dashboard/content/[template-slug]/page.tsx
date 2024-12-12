@@ -1,5 +1,5 @@
 "use client"
-import React, { useState, use } from 'react'
+import React, { useState, use, useContext } from 'react'
 import FormSection from '../_components/FormSection'
 import OutputSection from '../_components/OutputSection'
 import { TEMPLATE } from '../../_components/TemplateListSection'
@@ -12,6 +12,8 @@ import { db } from '@/utils/db'
 import { AIOutput } from '@/utils/schema'
 import { useUser } from '@clerk/nextjs'
 import moment from 'moment'
+import { TotalUsageContext } from '@/app/(context)/TotalUsageContext'
+import { useRouter } from 'next/navigation'
 
 interface PROPS {
     params: Promise<{ "template-slug": string }>
@@ -24,8 +26,15 @@ const CreateNewContent = (props: PROPS) => {
     const [loading, setLoading] = useState(false)
     const [aiOutput, setAiOutput] = useState<string>('')
     const { user } = useUser()
+    const router = useRouter()
+    const {totalUsage, setTotalUsage} = useContext(TotalUsageContext);
 
     const GenerateAIContent = async (formData: any) => {
+        if (totalUsage >= 10000) {
+            console.log('please upgrade')
+            router.push('/dashboard/billing')
+            return
+        }
         setLoading(true)
         const prompt = selectedTemplate?.aiPrompt
         const finalAIprompt = JSON.stringify(formData) + ", " + prompt
@@ -36,40 +45,30 @@ const CreateNewContent = (props: PROPS) => {
     }
 
     const SaveInDb = async (formData: any, slug: any, aiResponse: string) => {
-        // console.log('SaveInDb function called');
-        // console.log('Form Data:', formData);
-        // console.log('Slug:', slug);
-        // console.log('AI Response:', aiResponse);
+        console.log('SaveInDb function called');
+        console.log('Form Data:', formData);
+        console.log('Slug:', slug);
+        console.log('AI Response:', aiResponse);
 
-        // try {
-        //     console.log('Attempting to insert into database...');
-        //     const formattedDate = moment().format('DD/MM/YYYY'); // Corrected format
-        //     console.log('Formatted Date:', formattedDate);
-
-        //     const result = await db.insert(AIOutput).values({
-        //         formData: JSON.stringify(formData), // Ensure formData is a string if required
-        //         templateSlug: slug,
-        //         aiResponse: aiResponse,
-        //         createdAt: formattedDate
-        //     });
-
-        //     console.log('Insert Result:', result);
-        // } catch (error) {
-        //     console.error('Error inserting into database:', error);
-        // }
-
-        // console.log('SaveInDb function completed');
         try {
+            console.log('Attempting to insert into database...');
+            const formattedDate = moment().format('DD/MM/YYYY'); // Corrected format
+            console.log('Formatted Date:', formattedDate);
+
             const result = await db.insert(AIOutput).values({
-                formData: JSON.stringify({ test: 'data' }),
-                templateSlug: 'test-slug',
-                aiResponse: 'test response',
-                createdAt: moment().format('DD/MM/YYYY')
+                formData: JSON.stringify(formData), // Ensure formData is a string if required
+                templateSlug: slug,
+                aiResponse: aiResponse,
+                createdBy: user?.primaryEmailAddress?.emailAddress as string,
+                createdAt: formattedDate,
             });
-            console.log('Test Insert Result:', result);
+
+            console.log('Insert Result:', result);
         } catch (error) {
-            console.error('Test Insert Error:', error);
+            console.error('Error inserting into database:', error);
         }
+
+        console.log('SaveInDb function completed');
     }
 
     return (
