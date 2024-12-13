@@ -14,6 +14,8 @@ import { useUser } from '@clerk/nextjs'
 import moment from 'moment'
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext'
 import { useRouter } from 'next/navigation'
+import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext'
+import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext'
 
 interface PROPS {
     params: Promise<{ "template-slug": string }>
@@ -27,10 +29,13 @@ const CreateNewContent = (props: PROPS) => {
     const [aiOutput, setAiOutput] = useState<string>('')
     const { user } = useUser()
     const router = useRouter()
-    const {totalUsage, setTotalUsage} = useContext(TotalUsageContext);
+    const { totalUsage, setTotalUsage } = useContext(TotalUsageContext);
+    const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext)
+    const {updateCreditUsage, setUpdateCreditUsage} = useContext(UpdateCreditUsageContext)
+
 
     const GenerateAIContent = async (formData: any) => {
-        if (totalUsage >= 10000) {
+        if (totalUsage >= 10000 && !userSubscription) {
             console.log('please upgrade')
             router.push('/dashboard/billing')
             return
@@ -42,6 +47,7 @@ const CreateNewContent = (props: PROPS) => {
         setAiOutput(result.response.text())
         await SaveInDb(JSON.stringify(formData), selectedTemplate?.slug, result.response.text())
         setLoading(false)
+        setUpdateCreditUsage(Date.now())
     }
 
     const SaveInDb = async (formData: any, slug: any, aiResponse: string) => {

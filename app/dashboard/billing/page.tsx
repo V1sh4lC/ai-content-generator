@@ -1,17 +1,20 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import SubscriptionPlan from './_components/SubscriptionPlan'
 import axios from 'axios'
 import { db } from '@/utils/db'
 import { UserSubscription } from '@/utils/schema'
 import { useUser } from '@clerk/nextjs'
 import moment from 'moment'
+import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext'
 // import Razorpay from 'razorpay'
 
 const Billing = () => {
 
     const [loading, setLoading] = useState(false)
     const { user } = useUser()
+    const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext)
+
 
     const CreateSubcription = async () => {
         setLoading(true)
@@ -43,7 +46,7 @@ const Billing = () => {
         rzp.open()
     }
 
-    const saveSubscription = async (paymentId:string) => {
+    const saveSubscription = async (paymentId: string) => {
         const result = await db.insert(UserSubscription).values({
             email: user?.primaryEmailAddress?.emailAddress,
             userName: user?.fullName,
@@ -66,7 +69,7 @@ const Billing = () => {
             <h2 className='text-center text-4xl font-bold'>Upgrade with monthly plan</h2>
             <div className='border flex justify-center items-center h-full gap-10 py-10'>
                 <SubscriptionPlan onPayment={CreateSubcription} ctaLink='/' ctaText='Currently active plan' features={features1} name='free' price={99.99} variant={"secondary"} />
-                <SubscriptionPlan loading={loading} onPayment={CreateSubcription} ctaLink='/' ctaText='Get Started' features={features2} name='Monthly' price={999.99} variant={"default"} />
+                <SubscriptionPlan loading={loading} onPayment={CreateSubcription} ctaLink='/' ctaText={userSubscription ? "Active plan" : "Get started"} features={features2} name='Monthly' price={999.99} variant={"default"} />
             </div>
         </div>
     )

@@ -27,7 +27,7 @@ const SideNav = () => {
     {
       name: 'Settings',
       icon: Settings,
-      path: '/dashboard/setting'
+      path: '/dashboard/settings'
     },
   ]
 
