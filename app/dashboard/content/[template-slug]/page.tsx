@@ -78,7 +78,7 @@ const CreateNewContent = (props: PROPS) => {
     }
 
     return (
-        <div className='p-10'>
+        <div className='p-5 sm:p-10'>
             <Link href={'/dashboard'}>
                 <Button><ArrowLeft /> Back</Button>
             </Link>

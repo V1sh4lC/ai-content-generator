@@ -23,7 +23,7 @@ const History = () => {
             </div>
             <div className='mt-5'>
                 {/* grid header */}
-                <div className='border bg-neutral-200 font-bold grid grid-cols-[2fr_2fr_1fr_1fr_1fr] p-2'>
+                <div className='border bg-neutral-200 font-bold hidden sm:grid grid-cols-[2fr_2fr_1fr_1fr_1fr] p-2'>
                     <p>TEMPLATE</p><p>AI RESP</p><p>DATE</p><p>WORDS</p><p>COPY</p>
                 </div>
                 {/* grid content */}

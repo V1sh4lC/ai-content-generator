@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <div className="relative">
       {/* header */}
-      <div className="border-b flex justify-between px-16 py-3 items-center shadow-md bg-white">
+      <div className="border-b flex justify-between px-3 sm:px-16 py-3 items-center shadow-md bg-white">
         <Image src={"/logo.svg"} alt="logo" width={100} height={100} />
         <div className="flex gap-3 border-l px-5">
           <User />
@@ -42,13 +42,13 @@ export default function Home() {
       <div className="magicpattern absolute top-0 left-0"></div>
       {/* hero */}
       <div className="flex justify-center items-center flex-col gap-10 py-32">
-        <h1 className="text-6xl font-bold">AI Content <span className="text-primary">Generator</span></h1>
-        <p className="max-w-[700px] text-center">Revolutionize your content creation with out AI-powered app, delivering engging and high-quality text in seconds.</p>
+        <h1 className="text-6xl font-bold text-center">AI Content <span className="text-primary">Generator</span></h1>
+        <p className="max-w-[700px] text-center px-3">Revolutionize your content creation with out AI-powered app, delivering engging and high-quality text in seconds.</p>
         <Link href={"/dashboard"} className="bg-primary text-white flex gap-3 p-3 rounded-lg">Get started <ChevronRightIcon /></Link>
       </div>
 
       {/* features */}
-      <div className=" grid grid-cols-4 max-w-[1500px] m-auto">
+      <div className=" grid grid-cols-1 sm:grid-cols-4 max-w-[1500px] m-auto px-3 sm:px-0 gap-10 ">
         {featuresList.map((item, idx) => (
           <FeaturesCard key={idx} icon={item.icon} heading={item.heading} desc={item.desc}/>
         ))}

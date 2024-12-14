@@ -67,7 +67,7 @@ const Billing = () => {
         <div className='mt-20'>
             <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
             <h2 className='text-center text-4xl font-bold'>Upgrade with monthly plan</h2>
-            <div className='border flex justify-center items-center h-full gap-10 py-10'>
+            <div className='flex flex-col sm:flex-row justify-center items-center h-full gap-10 py-10'>
                 <SubscriptionPlan onPayment={CreateSubcription} ctaLink='/' ctaText='Currently active plan' features={features1} name='free' price={99.99} variant={"secondary"} />
                 <SubscriptionPlan loading={loading} onPayment={CreateSubcription} ctaLink='/' ctaText={userSubscription ? "Active plan" : "Get started"} features={features2} name='Monthly' price={999.99} variant={"default"} />
             </div>

@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation'
 import UsageTrack from './UsageTrack'
 import Link from 'next/link'
 
-const SideNav = () => {
+const SideNav = ({menuClickHandler}:any) => {
 
   const menuList = [
     {
@@ -43,7 +43,7 @@ const SideNav = () => {
       </div>
       <div className='mt-3'>
         {menuList.map((menu, idx) => (
-          <Link key={idx}href={menu.path}>
+          <Link key={idx} href={menu.path} onClick={menuClickHandler}>
             <div className={`flex gap-2 mb-2 p-3 hover:bg-primary hover:text-white rounded-lg cursor-pointer ${path === menu.path && "bg-primary text-white"}`}>
               <menu.icon />
               <h2 className='font-semibold'>{menu.name}</h2>
