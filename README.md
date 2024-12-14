@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI Content Generator
 
-## Getting Started
+AI Content Generator is an intelligent tool designed to create high-quality content for blogs, social media posts, and other creative needs. With a user-friendly interface and powerful AI model GEMINI, it enables users to generate engaging and customized content efficiently.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Multi-format Content Generation**: Supports blog posts, social media captions, and more.
+- **Customizable Outputs**: Allows users to specify tone, style, and length of the content.
+- **Real-time Suggestions**: Provides instant feedback and suggestions to enhance your content.
+- **AI-powered Optimization**: Ensures SEO-friendly and audience-targeted content.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Frontend**: Next.js, TailwindCSS, radix-ui, shadcn-ui
+- **Backend**: Node.js, typescript
+- **AI Model**: Google's gemini-flash
+- **Database**: Neon DB(postgreSQL), Drizzle ORM
+- **Deployment**: Vercel
+- **Payment Merchant**: Razorpay
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Installation
 
-## Learn More
+Follow these steps to set up the app locally:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/V1sh4lC/ai-content-generator
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. Navigate to the project directory:
+   ```bash
+   cd ai-content-generator
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. Install dependencies:
+   ```bash
+   npm install --force
+   ```
 
-## Deploy on Vercel
+4. Set up environment variables:
+   - Create a `.env.local` file in the root directory.
+   - Add the required API keys and configuration variables.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   Example:
+   ```env
+   GEMINI_API_KEY=your-api-key
+   POSTGRESQL_DB_URI=your-db-uri
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+6. Open your browser and navigate to `http://localhost:3000`.
+
+## Usage
+
+1. Log in or sign up to access the application.
+2. Select the type of content you want to generate.
+3. Input necessary details such as topic, tone, and keywords.
+4. Click on the "Generate" button to receive AI-generated content.
+5. Edit and refine the output as needed.
+
+## Contribution
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes and push them:
+   ```bash
+   git commit -m "Add your message here"
+   git push origin feature-name
+   ```
+4. Open a Pull Request on GitHub.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+## Contact
+
+For questions or feedback, reach out to [vishalmessi550@example.com](mailto:vishalmessi550@example.com) or visit [vishalc-portfolio.com](https://vishalc-portfolio.com) and message me through my socials.
+
