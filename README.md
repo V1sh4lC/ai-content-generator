@@ -84,5 +84,5 @@ This project is licensed under the MIT License. See the `LICENSE` file for detai
 
 ## Contact
 
-For questions or feedback, reach out to [vishalmessi550@example.com](mailto:vishalmessi550@example.com) or visit [vishalc-portfolio.com](https://vishalc-portfolio.com) and message me through my socials.
+For questions or feedback, reach out to [vishalmessi550@example.com](mailto:vishalmessi550@example.com) or visit [vishalc-portfolio.com](https://vishalc-portfolio.netlify.app) and message me through my socials.
 
